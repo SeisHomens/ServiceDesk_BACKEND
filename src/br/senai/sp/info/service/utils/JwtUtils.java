@@ -25,7 +25,9 @@ public class JwtUtils {
 
 		Date dataExpiracao = calendario.getTime();
 		return JWT.create().withExpiresAt(dataExpiracao).withIssuedAt(new Date()).withIssuer(TOKEN_AUTH_ASSINANTE)
-				.withClaim("id", usuario.getId()).withClaim("email", usuario.getEmail())
+				.withClaim("id", usuario.getId())
+				.withClaim("email", usuario.getEmail())
+				.withClaim("tokenBRQ", "Basic YWRtaW5TZW5haTpzZW5haUAxMjM=")
 				.withClaim("nome", usuario.getNome()).sign(Algorithm.HMAC512(TOKEN_AUTH_CHAVE_PRIVADA));
 
 	}
