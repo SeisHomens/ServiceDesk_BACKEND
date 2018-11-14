@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>service</display-name>
+	<display-name>Display-Name</display-name>
+	<!-- Spring Framework Dispatcher Servlet Configuration -->
+	<servlet>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>br.senai.sp.info.service.config.AppConfig</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- servlet-mapping>
+		<servlet-name>spring mvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping -->
+
+	<servlet-mapping>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/erro/servidor</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/erro/404</location>
+	</error-page>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/erro/403</location>
+	</error-page>
+
+	<error-page>
+		<error-code>401</error-code>
+		<location>/erro/401</location>
+	</error-page>
+
+</web-app>
