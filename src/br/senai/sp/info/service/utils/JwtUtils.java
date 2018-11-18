@@ -28,7 +28,9 @@ public class JwtUtils {
 				.withClaim("id", usuario.getId())
 				.withClaim("email", usuario.getEmail())
 				.withClaim("tokenBRQ", "Basic YWRtaW5TZW5haTpzZW5haUAxMjM=")
-				.withClaim("nome", usuario.getNome()).sign(Algorithm.HMAC512(TOKEN_AUTH_CHAVE_PRIVADA));
+				.withClaim("nome", usuario.getNome())
+				.withClaim("sobrenome", usuario.getSobrenome())
+				.sign(Algorithm.HMAC512(TOKEN_AUTH_CHAVE_PRIVADA));
 
 	}
 
