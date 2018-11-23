@@ -2,7 +2,6 @@ package br.senai.sp.info.service.ws.rest.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,16 +45,22 @@ public class UsuarioRestController {
 
 	// ------------------- Retrieve Single usuario ------------
 
-	@GetMapping(value = "usuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "usuario/{id}")
 	public ResponseEntity<Usuario> getusuario(@PathVariable("id") long id) {
-		System.out.println("Fetching usuario with id " + id);
 		Usuario usuario = usuarioDao.buscar(id);
-		if (usuario == null) {
-			System.out.println("usuario with id " + id + " not found");
-			return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
+		try {
+			return ResponseEntity.ok(usuarioService.buscar(id));
+		} catch (EntidadeNaoEncontradaException e) {
+			return ResponseEntity.notFound().build();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			return ResponseEntity.status(500).build();
+			
 		}
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
+
 
 	// ------------------- Create a usuario --------------------
 

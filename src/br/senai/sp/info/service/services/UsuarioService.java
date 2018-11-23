@@ -65,6 +65,11 @@ public class UsuarioService {
 		
 		return usuarioDAO.buscarTodos(); 
 	}
+	
+	public Usuario buscar(Long id) throws EntidadeNaoEncontradaException {
+		
+		return usuarioDAO.buscar(id);
+	}
 
 }
 

@@ -21,9 +21,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/rest/auth/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/chamados/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/criar/**").permitAll()
 				.antMatchers(HttpMethod.PUT, "/usuario/**").permitAll()
 				.antMatchers(HttpMethod.DELETE, "/usuario/**").permitAll()
+				.antMatchers(HttpMethod.PUT, "/chamado/**").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/chamado/**").permitAll()
 				// .anyRequest().authenticated()
 				.anyRequest().permitAll()
 				
