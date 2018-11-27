@@ -71,8 +71,11 @@ public class UsuarioController {
 
 	@GetMapping("/criar/feito")
 	public ResponseEntity<String> criar(Model model) {
-		String Json = "{ \"fields\": { \"project\": {\"key\": \"CDA\"},\"summary\": \"Conteúdo Teste\",\"description\": \"Criando um issue Front\",\"issuetype\": {\"name\": \"Servidor\"}}}";
-
+		//String Json = "{ \"fields\": { \"project\": {\"key\": \"CDA\"},\"summary\": \"Conteúdo Teste\",\"description\": \"Criando um issue Front\",\"issuetype\": {\"name\": \"Servidor\"}}}";
+		
+		String Json = "{ \"fields\": { \"project\": {\"key\": \"CDA\"},\"summary\": \"Conteúdo Teste 2\",\"description\": "
+				+ "\"Criando um issue Front novamente\",\"issuetype\": {\"name\": \"Servidor\"}}}";
+		
 		try {
 			RestTemplate restTemplate = new RestTemplate();
 

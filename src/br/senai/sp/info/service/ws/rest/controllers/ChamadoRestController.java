@@ -44,7 +44,7 @@ public class ChamadoRestController {
 	}
 
 	// buscar 1---------------------------------------------------------
-	@GetMapping(value = "chamado/{id}")
+	@GetMapping(value = "/rest/chamado/{id}")
 	public ResponseEntity<Chamado> getchamado(@PathVariable("id") long id) {
 		System.out.println("procurando chamado com id" + id);
 		Chamado chamado = chamadoDao.buscar(id);
@@ -62,7 +62,7 @@ public class ChamadoRestController {
 	}
 	//criar------------------------------------------------------------
 		
-	@PostMapping(value = "/chamado/novo")
+	@PostMapping(value = "/rest/chamado/novo")
 	public ResponseEntity<Chamado> createChamado(@RequestBody Chamado chamado) {
 			
 		chamadoDao.inserir(chamado);
@@ -72,7 +72,7 @@ public class ChamadoRestController {
 		}
 		
 	//alterar-----------------------------------------------------------
-	@PutMapping(value = "chamado/alterar/{id}")
+	@PutMapping(value = "/rest/chamado/alterar/{id}")
 	public ResponseEntity<Chamado> updateChamado(@PathVariable("id") long id, @RequestBody Chamado chamado) {
 		System.out.println("Alterando chamado" + id);
 			
@@ -96,7 +96,7 @@ public class ChamadoRestController {
 	}
 		
 	//delete-------------------------------------------------------------
-	@DeleteMapping(value = "chamado/deletar/{id}")
+	@DeleteMapping(value = "/rest/chamado/deletar/{id}")
 	public ResponseEntity<Chamado> deletechamado(@PathVariable("id") long id) {
 		System.out.println("procurando e deletando chamado com id" + id);
 			

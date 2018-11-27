@@ -24,7 +24,7 @@ import org.springframework.util.DigestUtils;
 public class Usuario implements Authentication {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "usuarioId")
 	private Long id;
 
