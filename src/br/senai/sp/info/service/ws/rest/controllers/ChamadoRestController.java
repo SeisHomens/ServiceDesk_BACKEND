@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.senai.sp.info.service.dao.ChamadoDAO;
@@ -17,6 +18,7 @@ import br.senai.sp.info.service.exceptions.EntidadeNaoEncontradaException;
 import br.senai.sp.info.service.models.Chamado;
 import br.senai.sp.info.service.services.ChamadoService;
 
+@RequestMapping(value = "/rest")
 @RestController
 public class ChamadoRestController {
 
@@ -27,7 +29,7 @@ public class ChamadoRestController {
 	ChamadoDAO chamadoDao;
 
 	// buscar todos----------------------------------------------------
-	@GetMapping("/rest/chamados")
+	@GetMapping("/chamados")
 	public ResponseEntity<Object> buscarTodos() {
 		try {
 			return ResponseEntity.ok(chamadoService.buscarTodos());
@@ -44,7 +46,7 @@ public class ChamadoRestController {
 	}
 
 	// buscar 1---------------------------------------------------------
-	@GetMapping(value = "/rest/chamado/{id}")
+	@GetMapping(value = "/chamado/{id}")
 	public ResponseEntity<Chamado> getchamado(@PathVariable("id") long id) {
 		System.out.println("procurando chamado com id" + id);
 		Chamado chamado = chamadoDao.buscar(id);
@@ -62,7 +64,7 @@ public class ChamadoRestController {
 	}
 	//criar------------------------------------------------------------
 		
-	@PostMapping(value = "/rest/chamado/novo")
+	@PostMapping(value = "/chamado/novo")
 	public ResponseEntity<Chamado> createChamado(@RequestBody Chamado chamado) {
 			
 		chamadoDao.inserir(chamado);
@@ -72,7 +74,7 @@ public class ChamadoRestController {
 		}
 		
 	//alterar-----------------------------------------------------------
-	@PutMapping(value = "/rest/chamado/alterar/{id}")
+	@PutMapping(value = "/chamado/alterar/{id}")
 	public ResponseEntity<Chamado> updateChamado(@PathVariable("id") long id, @RequestBody Chamado chamado) {
 		System.out.println("Alterando chamado" + id);
 			
@@ -83,20 +85,20 @@ public class ChamadoRestController {
 			return new ResponseEntity<Chamado>(HttpStatus.NOT_FOUND);
 				
 		}
-			
+		
+		chamadoBuscado.setUsuario(chamado.getUsuario());
 		chamadoBuscado.setResumo(chamado.getResumo());
 		chamadoBuscado.setDescricao(chamado.getDescricao());
-		chamadoBuscado.setRotulos(chamado.getRotulos());
-		chamadoBuscado.setFabricante(chamado.getFabricante());
-		chamadoBuscado.setModelo(chamado.getModelo());
-		chamadoBuscado.setGarantia(chamado.getGarantia());
+		chamadoBuscado.setContato(chamado.getContato());
+		chamadoBuscado.setDataCadastro(chamado.getDataCadastro());
+
 			
 		chamadoDao.alterar(chamadoBuscado);
 		return new ResponseEntity<Chamado>(chamado, HttpStatus.OK);
 	}
 		
 	//delete-------------------------------------------------------------
-	@DeleteMapping(value = "/rest/chamado/deletar/{id}")
+	@DeleteMapping(value = "/chamado/deletar/{id}")
 	public ResponseEntity<Chamado> deletechamado(@PathVariable("id") long id) {
 		System.out.println("procurando e deletando chamado com id" + id);
 			

@@ -48,6 +48,12 @@ public class Usuario implements Authentication {
 	@Size(min = 1, max = 32, message = "{Size}")
 	@NotNull(message = "{NotNull}")
 	private String sobrenome;
+	
+	@Column(nullable = false, unique = false)
+	@NotNull(message = "{NotNull}")
+	private String projetoVinculado;
+
+
 
 	@Column(length = 120, nullable = false, unique = true)
 	@Email(message = "{Email}")
@@ -86,9 +92,17 @@ public class Usuario implements Authentication {
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getProjetoVinculado() {
+		return projetoVinculado;
+	}
+
+	public void setProjetoVinculado(String projetoVinculado) {
+		this.projetoVinculado = projetoVinculado;
 	}
 
 	public String getSenha() {

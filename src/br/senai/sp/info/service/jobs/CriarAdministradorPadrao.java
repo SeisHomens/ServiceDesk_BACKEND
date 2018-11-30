@@ -23,6 +23,7 @@ public class CriarAdministradorPadrao implements ApplicationListener<ContextRefr
 		adm.setSenha("admin");
 		adm.setNome("Administrador");
 		adm.setSobrenome("do Sistema");
+		adm.setProjetoVinculado("Projeto Vinculado");
 		adm.setTipo(TiposUsuario.ADMINISTRADOR);
 		adm.hashearSenha();
 		 

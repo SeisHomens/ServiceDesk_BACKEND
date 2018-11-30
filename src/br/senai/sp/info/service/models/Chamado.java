@@ -1,4 +1,4 @@
-	package br.senai.sp.info.service.models;
+package br.senai.sp.info.service.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,17 @@ public class Chamado {
 	@Column(name = "chamadoId")
 	private Long id;
 	
+	@Column(length = 120, nullable = false, unique = false)
+	@Size(min = 1, max = 120, message = "{Size}")
+	@NotNull(message = "{NotNull}")
+	private String usuario;
+	
+	@Column(length = 64, nullable = false, unique = false)
+	@Size(min = 1, max = 64, message = "{Size}")
+	@NotNull(message = "{Size}")
+	private String tipoPendencia;
+	
+	
 	@Column(length = 32, nullable = false, unique = false)
 	@Size(min = 1, max = 32, message = "{Size}")
 	@NotNull(message = "{NotNull}")
@@ -28,21 +39,47 @@ public class Chamado {
 	@NotNull(message = "{NotNull}")
 	private String descricao;
 	
-	@Column(length = 32, nullable = false, unique = false)
-	@Size(min = 1, max = 32, message = "{Size}")
-	private String rotulos;
+	@Column(length = 64, nullable = false, unique = false)
+	@Size(min = 1, max = 64, message = "{Size}")
+	@NotNull(message = "{NotNull}")
+	private String contato;
 	
-	@Column(length = 32, nullable = false, unique = false)
-	@Size(min = 1, max = 32, message = "{Size}")
-	private String fabricante;
+	@Column(length = 10, nullable = false, unique = false)
+	@Size(min = 1, max = 10, message = "{Size}")
+	@NotNull(message = "{NotNull}")
+	private String dataCadastro;
 	
-	@Column(length = 32, nullable = false, unique = false)
-	@Size(min = 1, max = 32, message = "{Size}")
-	private String modelo;
-	
-	@Column(length = 32, nullable = false, unique = false)
-	@Size(min = 1, max = 32, message = "{Size}")
-	private String garantia;
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getTipoPendencia() {
+		return tipoPendencia;
+	}
+
+	public void setTipoPendencia(String tipoPendencia) {
+		this.tipoPendencia = tipoPendencia;
+	}
+
+	public String getContato() {
+		return contato;
+	}
+
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
+
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 	public Long getId() {
 		return id;
@@ -68,36 +105,5 @@ public class Chamado {
 		this.descricao = descricao;
 	}
 
-	public String getRotulos() {
-		return rotulos;
-	}
-
-	public void setRotulos(String rotulos) {
-		this.rotulos = rotulos;
-	}
-
-	public String getFabricante() {
-		return fabricante;
-	}
-
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public String getGarantia() {
-		return garantia;
-	}
-
-	public void setGarantia(String garantia) {
-		this.garantia = garantia;
-	}
-	
+		
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.senai.sp.info.service.dao.UsuarioDAO;
@@ -16,6 +17,7 @@ import br.senai.sp.info.service.exceptions.EntidadeNaoEncontradaException;
 import br.senai.sp.info.service.models.Usuario;
 import br.senai.sp.info.service.services.UsuarioService;
 
+@RequestMapping(value = "/rest")
 @RestController
 public class UsuarioRestController {
 
@@ -27,7 +29,7 @@ public class UsuarioRestController {
 
 	// ------------------- Retrieve All usuario ---------------
 
-	@GetMapping("/rest/usuarios")
+	@GetMapping("/usuarios")
 	public ResponseEntity<Object> buscarTodos() {
 	
 		try {
@@ -45,7 +47,7 @@ public class UsuarioRestController {
 
 	// ------------------- Retrieve Single usuario ------------
 
-	@GetMapping(value = "/rest/usuario/{id}")
+	@GetMapping(value = "/usuario/{id}")
 	public ResponseEntity<Usuario> getusuario(@PathVariable("id") long id) {
 		Usuario usuario = usuarioDao.buscar(id);
 		try {
@@ -92,6 +94,7 @@ public class UsuarioRestController {
 		usuarioBuscado.setEmail(usuario.getEmail());
 		usuarioBuscado.setSenha(usuario.getSenha());
 		usuarioBuscado.setTipo(usuario.getTipo());
+		usuarioBuscado.setProjetoVinculado(usuario.getProjetoVinculado());
 
 		usuarioBuscado.hashearSenha();
 		usuario.hashearSenha();
