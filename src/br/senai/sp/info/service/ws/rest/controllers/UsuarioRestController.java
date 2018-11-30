@@ -66,7 +66,7 @@ public class UsuarioRestController {
 
 	// ------------------- Create a usuario --------------------
 
-	@PostMapping(value = "/rest/usuario/novo")
+	@PostMapping(value = "/usuario/novo")
 	public ResponseEntity<Usuario> createusuario(@RequestBody Usuario usuario) {
 		System.out.println("Creating usuario " + usuario.getNome());
 
@@ -78,7 +78,7 @@ public class UsuarioRestController {
 
 	// ------------------- Update a usuario --------------------
 
-	@PutMapping(value = "/rest/usuario/alterar/{id}")
+	@PutMapping(value = "/usuario/alterar/{id}")
 	public ResponseEntity<Usuario> updateusuario(@PathVariable("id") long id, @RequestBody Usuario usuario) {
 		System.out.println("Updating usuario " + id);
 
@@ -105,7 +105,7 @@ public class UsuarioRestController {
 
 	// ------------------- Delete a usuario -------------------
 
-	@DeleteMapping(value = "/rest/usuario/deletar/{id}")
+	@DeleteMapping(value = "/usuario/deletar/{id}")
 	public ResponseEntity<Usuario> deleteusuario(@PathVariable("id") long id) {
 		System.out.println("Fetching & Deleting usuario with id " + id);
 
