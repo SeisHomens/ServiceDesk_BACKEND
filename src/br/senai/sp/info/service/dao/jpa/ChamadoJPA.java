@@ -9,29 +9,23 @@ import br.senai.sp.info.service.dao.ChamadoDAO;
 import br.senai.sp.info.service.models.Chamado;
 
 @Repository("chamadoDao")
-public class ChamadoJPA extends AbstractJPA<Chamado> implements ChamadoDAO{
+public class ChamadoJPA extends AbstractJPA<Chamado> implements ChamadoDAO {
 
 	@Override
-	public Chamado buscarPorNome(String resumo) {
+	public List<Chamado> buscarPorUsuario(String usuario) {
 		List<Chamado> chamados = buscarPorCampos(new HashMap<String, Object>() {
 			{
-				put("resumo", resumo);
-		}
-		
-	});
-		
-		if(chamados.isEmpty()) {
-			return null;
-		} else {
-			return chamados.get(0);
-		}
+				put("usuario", usuario);
+			}
+
+		});
+
+		return chamados;
 	}
 
 	@Override
 	public String getEntityName() {
 		return "Chamado";
 	}
-	
-	
 
 }

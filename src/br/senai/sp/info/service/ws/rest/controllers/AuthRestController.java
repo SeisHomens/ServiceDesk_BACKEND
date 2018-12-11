@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
 
+import br.senai.sp.info.service.core.SessionUtils;
 import br.senai.sp.info.service.exceptions.EntidadeNaoEncontradaException;
 import br.senai.sp.info.service.exceptions.ValidacaoException;
 import br.senai.sp.info.service.models.Usuario;
@@ -30,6 +31,9 @@ public class AuthRestController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private SessionUtils sessionUtils;
 
 	@RequestMapping(value = "/jwt", method = { RequestMethod.POST })
 	public ResponseEntity<Object> gerarJwt(@Valid @RequestBody Usuario usuario, BindingResult bindingResult)
@@ -39,7 +43,7 @@ public class AuthRestController {
 			Usuario usuarioBuscado = usuarioService.buscarPorEmailESenha(usuario, bindingResult);
 			Map<String, String> mapaToken = new HashMap<>();
 			mapaToken.put("token", JwtUtils.gerarTokenAutenticacao(usuarioBuscado));
-
+			sessionUtils.setUsuarioLogado(usuarioBuscado);
 			return ResponseEntity.ok(mapaToken);		
 			
 		} catch (ValidacaoException e) {

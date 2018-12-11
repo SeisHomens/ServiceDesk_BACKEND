@@ -1,9 +1,15 @@
 package br.senai.sp.info.service.ws.rest.controllers;
 
+import java.util.List;
+
+import javax.persistence.EntityTransaction;
+import javax.swing.JOptionPane;
+import javax.swing.text.html.parser.Entity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.senai.sp.info.service.dao.ChamadoDAO;
 import br.senai.sp.info.service.exceptions.EntidadeNaoEncontradaException;
 import br.senai.sp.info.service.models.Chamado;
+import br.senai.sp.info.service.models.Usuario;
 import br.senai.sp.info.service.services.ChamadoService;
 
 @RequestMapping(value = "/rest")
@@ -28,6 +35,22 @@ public class ChamadoRestController {
 	@Autowired
 	ChamadoDAO chamadoDao;
 
+	// buscar pelo usuario---------------------------------------------
+//	@PostMapping("/chamados/usuario")
+//	public ResponseEntity<Object> buscarPorUsuario(@RequestBody List<String> chamado, BindingResult bindingResult){
+//		try {
+//			return ResponseEntity.ok(chamadoService.buscarPorUsuario(chamado, bindingResult));
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			return ResponseEntity.status(500).build();
+//		}
+//	}
+	
+	@GetMapping("/chamados/usuario")
+	public ResponseEntity<Object> buscarPorUsuario(){
+			return ResponseEntity.ok(chamadoService.buscarTodosPorUsuario());
+	}
+	
 	// buscar todos----------------------------------------------------
 	@GetMapping("/chamados")
 	public ResponseEntity<Object> buscarTodos() {

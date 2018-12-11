@@ -1,5 +1,7 @@
 package br.senai.sp.info.service.dao;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import br.senai.sp.info.service.models.Chamado;
@@ -7,6 +9,6 @@ import br.senai.sp.info.service.models.Chamado;
 public interface ChamadoDAO extends DAO<Chamado>{
 	
 	@Transactional
-	public Chamado buscarPorNome(String resumo);
+	public List<Chamado> buscarPorUsuario(String usuario);
 
 }

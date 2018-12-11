@@ -49,7 +49,6 @@ public class UsuarioRestController {
 
 	@GetMapping(value = "/usuario/{id}")
 	public ResponseEntity<Usuario> getusuario(@PathVariable("id") long id) {
-		Usuario usuario = usuarioDao.buscar(id);
 		try {
 			return ResponseEntity.ok(usuarioService.buscar(id));
 		} catch (EntidadeNaoEncontradaException e) {
